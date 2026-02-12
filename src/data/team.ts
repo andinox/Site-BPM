@@ -1,29 +1,29 @@
 import placeholderAvatar from "@/assets/logo-placeholder.svg";
-import JeanPhoto from "@/assets/pp/Jean.png";
-import MaellePhoto from "@/assets/pp/Maelle.png";
-import LucaPhoto from "@/assets/pp/Luca.png";
-import SamyPhoto from "@/assets/pp/Samy.png";
-import HectorPhoto from "@/assets/pp/Hector.png";
-import LucasPhoto from "@/assets/pp/Lucas.png";
-import AurelienPhoto from "@/assets/pp_ascii/Aurelien.png";
-import JacquesPhoto from "@/assets/pp/Jacques.png";
-import MathieuPhoto from "@/assets/pp/Mathieu.png";
-import GustavePhoto from "@/assets/pp/Gustave.png";
-import PaoloPhoto from "@/assets/pp/Paolo.png";
-import JulienPhoto from "@/assets/pp/Julien.png";
-import DouaePhoto from "@/assets/pp/Douae.png";
-import ArnaudPhoto from "@/assets/pp/Arnaud.png";
-import LeoPhoto from "@/assets/pp_ascii/Leo.png";
-import WilliamPhoto from "@/assets/pp/William.png";
-import LudmilaPhoto from "@/assets/pp/Ludmila.png";
-import QuentinPhoto from "@/assets/pp/Quentin.png";
-import InesPhoto from "@/assets/pp_ascii/Ines.png";
-import MartinPhoto from "@/assets/pp/Martin.png";
-import NicolasRPhoto from "@/assets/pp/Nicolas R.png";
-import SlavikPhoto from "@/assets/pp/Slavik.png";
-import ZeinebPhoto from "@/assets/pp/Zeineb.png";
-import LoucasPhoto from "@/assets/pp/Loucas.png"
-import LoupPhoto from "@/assets/pp/Loup.png";
+import JeanPhoto from "@/assets/pp_team_display/Jean.webp";
+import MaellePhoto from "@/assets/pp_team_display/Maelle.webp";
+import LucaPhoto from "@/assets/pp_team_display/Luca.webp";
+import SamyPhoto from "@/assets/pp_team_display/Samy.webp";
+import HectorPhoto from "@/assets/pp_team_display/Hector.webp";
+import LucasPhoto from "@/assets/pp_team_display/Lucas.webp";
+import AurelienPhoto from "@/assets/pp_team_display/Aurelien.webp";
+import JacquesPhoto from "@/assets/pp_team_display/Jacques.webp";
+import MathieuPhoto from "@/assets/pp_team_display/Mathieu.webp";
+import GustavePhoto from "@/assets/pp_team_display/Gustave.webp";
+import PaoloPhoto from "@/assets/pp_team_display/Paolo.webp";
+import JulienPhoto from "@/assets/pp_team_display/Julien.webp";
+import DouaePhoto from "@/assets/pp_team_display/Douae.webp";
+import ArnaudPhoto from "@/assets/pp_team_display/Arnaud.webp";
+import LeoPhoto from "@/assets/pp_team_display/Leo.webp";
+import WilliamPhoto from "@/assets/pp_team_display/William.webp";
+import LudmilaPhoto from "@/assets/pp_team_display/Ludmila.webp";
+import QuentinPhoto from "@/assets/pp_team_display/Quentin.webp";
+import InesPhoto from "@/assets/pp_team_display/Ines.webp";
+import MartinPhoto from "@/assets/pp_team_display/Martin.webp";
+import NicolasRPhoto from "@/assets/pp_team_display/Nicolas R.webp";
+import SlavikPhoto from "@/assets/pp_team_display/Slavik.webp";
+import ZeinebPhoto from "@/assets/pp_team_display/Zeineb.webp";
+import LoucasPhoto from "@/assets/pp_team_display/Loucas.webp"
+import LoupPhoto from "@/assets/pp_team_display/Loup.webp";
 
 export type TeamNode = {
   id: string;

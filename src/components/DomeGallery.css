@@ -27,7 +27,7 @@ main.sphere-main {
   display: grid;
   place-items: center;
   overflow: hidden;
-  touch-action: none;
+  touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
   background: transparent;
