@@ -45,16 +45,13 @@ export const teamNodes: TeamNode[] = [
 
   { id: "vice", name: "Maëlle", title: "Vice du prez", photo: photo_Maelle, x: -600, y: 300 },
   { id: "aurelien", name: "Aurélien", title: "Mapping", photo: photo_Aurelien, x: -800, y: 100 },
-  { id: "loucas", name: "Loucas", title: "Lights", photo: photo_Loucas, x: -600, y: 100 },
+  { id: "loucas", name: "Loucas", title: "Membre Lights", photo: photo_Loucas, x: -600, y: 100 },
   { id: "lucasD", name: "Lucas", title: "Mapping", photo: photo_LucasD, x: -800, y: 300 },
-
-
 
   { id: "gustave", name: "Gustave", title: "Membre Son", photo: photo_Gustave, x: 600, y: 100 },
   { id: "paolo", name: "Paolo", title: "Membre Son", photo: photo_Paolo, x: 600, y: 300 },
   { id: "julien", name: "Julien", title: "Log", photo: photo_Julien, x: 800, y: 100 },
   { id: "douae", name: "Douae", title: "Log", photo: photo_Douae, x: 800, y: 300 },
-
 
   { id: "arnaud", name: "Arnaud", title: "Respo Conan", photo: photo_Arnaud, x: 0, y: 500 },
   { id: "leo", name: "Léo", title: "Membre Conan", photo: photo_Leo, x: -200, y: 550 },
@@ -64,8 +61,7 @@ export const teamNodes: TeamNode[] = [
   { id: "quentin", name: "Quentin", title: "Ritz", photo: photo_Quentin, x: -100, y: 800 },
 
   { id: "william", name: "William", title: "Réparation", photo: photo_William, x: -500, y: 600 },
-  { id: "nicolas", name: "Nicolas", title: "Num", photo: photo_Nicolas, x: -400, y: 850 },
-
+  { id: "nicolas", name: "Nicolas", title: "Numérique", photo: photo_Nicolas, x: -400, y: 850 },
 
   { id: "ines", name: "Inès", title: "RE", photo: photo_Ines, x: -750, y: 650 },
   { id: "martin", name: "Martin", title: "RE", photo: photo_Martin, x: -650, y: 900 },
