@@ -147,7 +147,7 @@ const TeamView: React.FC = () => {
         displaySocials
         displayItemNumbering={true}
         menuButtonColor="#ffffff"
-        openMenuButtonColor="#fff"
+        openMenuButtonColor="#000000"
         changeMenuColorOnOpen={true}
         colors={["#ffffff", "#9a9a9a", "#000000"]}
         logoUrl={logoUrl}
