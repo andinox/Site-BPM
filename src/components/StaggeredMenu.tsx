@@ -42,7 +42,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   className,
   logoUrl = "/src/assets/logos/reactbits-gh-white.svg",
   menuButtonColor = "#fff",
-  openMenuButtonColor = "#fff",
+  openMenuButtonColor = "#000",
   accentColor = "#5227FF",
   changeMenuColorOnOpen = true,
   isFixed = false,
