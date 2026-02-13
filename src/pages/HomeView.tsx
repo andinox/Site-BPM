@@ -4,7 +4,6 @@ import MagicBento from "@/components/MagicBento";
 import DomeGallery from "@/components/DomeGallery";
 import LogoMarquee from "@/components/LogoMarquee";
 import RevealText from "@/components/RevealText";
-import EventGallery from "@/components/EventGallery";
 import { menuItems, socialItems } from "@/data/menu";
 import { equipmentCards } from "@/data/equipment";
 import { softwareLogos, trustLogos } from "@/data/logos";
