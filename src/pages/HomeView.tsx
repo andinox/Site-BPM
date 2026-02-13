@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
+import lightBackground from "@/assets/light.png";
+import mxBackground from "@/assets/mx.png";
 import StaggeredMenu from "@/components/StaggeredMenu";
 import MagicBento from "@/components/MagicBento";
 import DomeGallery from "@/components/DomeGallery";
@@ -8,8 +10,6 @@ import { menuItems, socialItems } from "@/data/menu";
 import { equipmentCards } from "@/data/equipment";
 import { softwareLogos, trustLogos } from "@/data/logos";
 import { eventImages } from "@/data/events";
-import lightBackground from "@/assets/light.png";
-import mxBackground from "@/assets/mx.png";
 import logoUrl from "@/assets/BPM_logo.png";
 import logoSideRight from "@/assets/egeg.jpg";
 import logoSideLeft from "@/assets/egeggg.jpg";
@@ -53,17 +53,17 @@ const HomeView: React.FC = () => {
       />
 
       <section className="hero noselect">
-        <img className="hero__backdrop" src={heroVariant === "mx" ? mxBackground : lightBackground} alt="" aria-hidden="true" />
+        <img className="hero__backdrop" style={heroVariant === "mx" ? { right: '0px' } : { left: '0px' }} src={heroVariant === "mx" ? mxBackground : lightBackground} alt="" aria-hidden="true" {...({ fetchPriority: "high" } as any)} />
         <div className="hero__content">
           <div className="hero__title">
             <h1>
-              <span className="hero__big">Club</span>
+              <span className="hero__big">BPM</span>
               <span className="hero__sub">Light  & Sono</span>
             </h1>
           </div>
           <div className="hero__logo">
             <div className="hero__tilt" onMouseMove={handleTilt} onMouseLeave={resetTilt}>
-              <img src={logoUrl} alt="BPM Logo" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }} />
+              <img src={logoUrl} alt="BPM Logo" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }} {...({ fetchPriority: "high" } as any)} />
             </div>
           </div>
           <div className="scroll-cue">
@@ -74,8 +74,8 @@ const HomeView: React.FC = () => {
       </section>
 
       <section className="bento-section-block">
-        <img className="bento-side bento-side--right" src={bentoSideRight} alt="" aria-hidden="true" />
-        <img className="bento-side bento-side--left" src={bentoSideLeft} alt="" aria-hidden="true" />
+        <img className="bento-side bento-side--right" src={bentoSideRight} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
+        <img className="bento-side bento-side--left" src={bentoSideLeft} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
         <div className="bento-section-inner">
           <h2 className="section-title noselect">
             <RevealText text="Notre Équipement" />
@@ -117,8 +117,8 @@ const HomeView: React.FC = () => {
       </section>
 
       <section className="logo-section">
-        <img className="section-side section-side--right" src={logoSideRight} alt="" aria-hidden="true" />
-        <img className="section-side section-side--left" src={logoSideLeft} alt="" aria-hidden="true" />
+        <img className="section-side section-side--right" src={logoSideRight} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
+        <img className="section-side section-side--left" src={logoSideLeft} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
         <div className="logo-section__group">
           <h2 className="section-title noselect">
             <RevealText text="Logiciels que nous maîtrisons" />
