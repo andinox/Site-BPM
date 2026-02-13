@@ -20,7 +20,7 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ items, speed = 40, simple = f
 
   return (
     <div className={`logo-loop ${simple ? "is-simple" : ""}`}>
-      <div className="logo-loop__track" style={trackStyle}>
+      <div className="logo-loop__track noselect" style={trackStyle}>
         {doubled.map((item, index) => (
           <div
             key={index}
@@ -29,7 +29,7 @@ const LogoMarquee: React.FC<LogoMarqueeProps> = ({ items, speed = 40, simple = f
           >
             {item.image || fallbackImage ? (
               <>
-                <img src={item.image || fallbackImage || ""} alt={item.alt || item.primary || ""} loading="lazy" />
+                <img src={item.image || fallbackImage || ""} alt={item.alt || item.primary || ""} draggable={false} />
                 {!simple && item.primary && <div className="logo-item__primary">{item.primary}</div>}
               </>
             ) : (

@@ -63,7 +63,7 @@ const HomeView: React.FC = () => {
           </div>
           <div className="hero__logo">
             <div className="hero__tilt" onMouseMove={handleTilt} onMouseLeave={resetTilt}>
-              <img src={logoUrl} alt="BPM Logo" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }} {...({ fetchPriority: "high" } as any)} />
+              <img src={logoUrl} draggable={false} alt="BPM Logo" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }} {...({ fetchPriority: "high" } as any)} />
             </div>
           </div>
           <div className="scroll-cue">

@@ -415,9 +415,6 @@ const GlobalSpotlight = ({
           duration: 0.3,
           ease: "power2.out"
         });
-        cards.forEach((card) => {
-          card.style.setProperty("--glow-intensity", "0");
-        });
         return;
       }
 
@@ -468,9 +465,6 @@ const GlobalSpotlight = ({
 
     const handleMouseLeave = () => {
       isInsideSection.current = false;
-      gridRef.current?.querySelectorAll(".magic-bento-card").forEach((card) => {
-        card.style.setProperty("--glow-intensity", "0");
-      });
       if (spotlightRef.current) {
         gsap.to(spotlightRef.current, {
           opacity: 0,
@@ -615,7 +609,7 @@ const MagicBento = ({
                       <img
                         src={card.image}
                         alt={card.title}
-                        loading="lazy"
+                        draggable={false}
                         style={
                           card.imageOffsetY !== undefined
                             ? {
