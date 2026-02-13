@@ -22,26 +22,12 @@ const HomeView: React.FC = () => {
   const heroVariant = useMemo<"light" | "mx">(() => (Math.random() < 0.5 ? "mx" : "light"), []);
   const heroSide = heroVariant === "mx" ? "left" : "right";
   const oppositeHeroSide = heroSide === "left" ? "right" : "left";
-  const [menuPosition, setMenuPosition] = useState<"left" | "right">(heroSide);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const x32Card = document.querySelector<HTMLElement>('.magic-bento-card[data-card-id="behringer-x32"]');
     if (!x32Card) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMenuPosition(oppositeHeroSide);
-        } else {
-          setMenuPosition(heroSide);
-        }
-      },
-      { threshold: 0.45 }
-    );
-
-    observer.observe(x32Card);
-    return () => observer.disconnect();
   }, [heroSide, oppositeHeroSide]);
 
   const handleTilt = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -63,7 +49,7 @@ const HomeView: React.FC = () => {
   return (
     <main className="home" data-hero-side={heroSide} data-hero-variant={heroVariant}>
       <StaggeredMenu
-        position={menuPosition}
+        position="right"
         items={menuItems}
         socialItems={socialItems}
         displaySocials
