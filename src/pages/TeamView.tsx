@@ -27,10 +27,15 @@ const TeamView: React.FC = () => {
     pointerId: number;
   } | null>(null);
 
+  // We keep a ref to the current transform so we can access it in centerView
+  // without adding it to the dependency array (which would cause loops/resets).
+  const transformRef = useRef(transform);
+  transformRef.current = transform;
+
   const centerView = useCallback(
     (scaleOverride?: number) => {
       if (!viewportRef.current) return;
-      const scale = typeof scaleOverride === "number" ? scaleOverride : transform.scale;
+      const scale = typeof scaleOverride === "number" ? scaleOverride : transformRef.current.scale;
       const rect = viewportRef.current.getBoundingClientRect();
       setTransform({
         scale,
@@ -38,7 +43,7 @@ const TeamView: React.FC = () => {
         y: (rect.height - CANVAS_HEIGHT * scale) / 2
       });
     },
-    [transform.scale]
+    []
   );
 
   const zoomBy = (factor: number) => {
@@ -98,18 +103,40 @@ const TeamView: React.FC = () => {
 
   const onWheel = (event: React.WheelEvent<HTMLDivElement>) => {
     event.preventDefault();
-    setTransform((prev) => ({
-      ...prev,
-      scale: clamp(prev.scale - event.deltaY * 0.0018, MIN_SCALE, MAX_SCALE)
-    }));
+    const { clientX, clientY, deltaY } = event;
+
+    setTransform((prev) => {
+      // Calculate new scale
+      const zoomDelta = -deltaY * 0.0018;
+      const newScale = clamp(prev.scale + zoomDelta, MIN_SCALE, MAX_SCALE);
+
+      // If we are at the limit, don't move the position unnecessarily
+      if (newScale === prev.scale) return prev;
+
+      // Calculate the mouse position relative to the content (in content coordinates)
+      const contentX = (clientX - prev.x) / prev.scale;
+      const contentY = (clientY - prev.y) / prev.scale;
+
+      // Calculate new translation so that contentX/contentY remains under clientX/clientY
+      // clientX = newX + contentX * newScale
+      // newX = clientX - contentX * newScale
+      const newX = clientX - contentX * newScale;
+      const newY = clientY - contentY * newScale;
+
+      return {
+        scale: newScale,
+        x: newX,
+        y: newY
+      };
+    });
   };
 
   useEffect(() => {
     centerView(1);
-    const handleResize = () => centerView(transform.scale);
+    const handleResize = () => centerView();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [centerView, transform.scale]);
+  }, [centerView]);
 
   return (
     <main className="team">
