@@ -48,19 +48,8 @@ const HomeView: React.FC = () => {
   return (
     <main className="home" data-hero-side={heroSide} data-hero-variant={heroVariant}>
       <StaggeredMenu
-        position="right"
         items={menuItems}
         socialItems={socialItems}
-        displaySocials
-        displayItemNumbering={true}
-        menuButtonColor="#ffffff"
-        openMenuButtonColor="#000000"
-        changeMenuColorOnOpen={true}
-        colors={["#000000", "#ffffff"]}
-        accentColor="#000000"
-        isFixed
-        onMenuOpen={() => console.log("Menu opened")}
-        onMenuClose={() => console.log("Menu closed")}
       />
 
       <section className="hero noselect">

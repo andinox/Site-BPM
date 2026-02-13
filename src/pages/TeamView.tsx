@@ -140,17 +140,8 @@ const TeamView: React.FC = () => {
   return (
     <main className="team">
       <StaggeredMenu
-        position="right"
         items={menuItems}
         socialItems={socialItems}
-        displaySocials
-        displayItemNumbering={true}
-        menuButtonColor="#ffffff"
-        openMenuButtonColor="#000000"
-        changeMenuColorOnOpen={true}
-        colors={["#ffffff", "#9a9a9a", "#000000"]}
-        accentColor="#111111"
-        isFixed
       />
 
       <section className="team-frame">
