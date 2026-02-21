@@ -1,17 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
+import lightBackground from "@/assets/light.png";
+import mxBackground from "@/assets/mx.png";
 import StaggeredMenu from "@/components/StaggeredMenu";
 import MagicBento from "@/components/MagicBento";
 import DomeGallery from "@/components/DomeGallery";
 import LogoMarquee from "@/components/LogoMarquee";
 import RevealText from "@/components/RevealText";
-import EventGallery from "@/components/EventGallery";
 import { menuItems, socialItems } from "@/data/menu";
 import { equipmentCards } from "@/data/equipment";
 import { softwareLogos, trustLogos } from "@/data/logos";
 import { eventImages } from "@/data/events";
-import lightBackground from "@/assets/light.png";
-import mxBackground from "@/assets/mx.png";
-import logoUrl from "@/assets/logo.png";
+import logoUrl from "@/assets/BPM_logo.png";
 import logoSideRight from "@/assets/egeg.jpg";
 import logoSideLeft from "@/assets/egeggg.jpg";
 import bentoSideRight from "@/assets/ec1.jpg";
@@ -22,26 +21,12 @@ const HomeView: React.FC = () => {
   const heroVariant = useMemo<"light" | "mx">(() => (Math.random() < 0.5 ? "mx" : "light"), []);
   const heroSide = heroVariant === "mx" ? "left" : "right";
   const oppositeHeroSide = heroSide === "left" ? "right" : "left";
-  const [menuPosition, setMenuPosition] = useState<"left" | "right">(heroSide);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const x32Card = document.querySelector<HTMLElement>('.magic-bento-card[data-card-id="behringer-x32"]');
     if (!x32Card) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMenuPosition(oppositeHeroSide);
-        } else {
-          setMenuPosition(heroSide);
-        }
-      },
-      { threshold: 0.45 }
-    );
-
-    observer.observe(x32Card);
-    return () => observer.disconnect();
   }, [heroSide, oppositeHeroSide]);
 
   const handleTilt = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -63,34 +48,22 @@ const HomeView: React.FC = () => {
   return (
     <main className="home" data-hero-side={heroSide} data-hero-variant={heroVariant}>
       <StaggeredMenu
-        position={menuPosition}
         items={menuItems}
         socialItems={socialItems}
-        displaySocials
-        displayItemNumbering={true}
-        menuButtonColor="#ffffff"
-        openMenuButtonColor="#000000"
-        changeMenuColorOnOpen={true}
-        colors={["#000000", "#ffffff"]}
-        logoUrl={logoUrl}
-        accentColor="#000000"
-        isFixed
-        onMenuOpen={() => console.log("Menu opened")}
-        onMenuClose={() => console.log("Menu closed")}
       />
 
-      <section className="hero">
-        <img className="hero__backdrop" src={heroVariant === "mx" ? mxBackground : lightBackground} alt="" aria-hidden="true" />
+      <section className="hero noselect">
+        <img className="hero__backdrop" style={heroVariant === "mx" ? { right: '0px' } : { left: '0px' }} src={heroVariant === "mx" ? mxBackground : lightBackground} alt="" aria-hidden="true" {...({ fetchPriority: "high" } as any)} />
         <div className="hero__content">
           <div className="hero__title">
             <h1>
-              <span className="hero__big">Club</span>
-              <span className="hero__sub">light / sono</span>
+              <span className="hero__big">BPM</span>
+              <span className="hero__sub">Light  & Sono</span>
             </h1>
           </div>
           <div className="hero__logo">
             <div className="hero__tilt" onMouseMove={handleTilt} onMouseLeave={resetTilt}>
-              <img src={logoUrl} alt="BPM Club logo" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }} />
+              <img src={logoUrl} draggable={false} alt="BPM Logo" style={{ transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` }} {...({ fetchPriority: "high" } as any)} />
             </div>
           </div>
           <div className="scroll-cue">
@@ -101,11 +74,11 @@ const HomeView: React.FC = () => {
       </section>
 
       <section className="bento-section-block">
-        <img className="bento-side bento-side--right" src={bentoSideRight} alt="" aria-hidden="true" />
-        <img className="bento-side bento-side--left" src={bentoSideLeft} alt="" aria-hidden="true" />
+        <img className="bento-side bento-side--right" src={bentoSideRight} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
+        <img className="bento-side bento-side--left" src={bentoSideLeft} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
         <div className="bento-section-inner">
-          <h2 className="section-title bento-section-title">
-            <RevealText text="Notre Équipement" step={8} />
+          <h2 className="section-title noselect">
+            <RevealText text="Notre Équipement" />
           </h2>
           <MagicBento
             cards={equipmentCards}
@@ -125,7 +98,9 @@ const HomeView: React.FC = () => {
       </section>
 
       <section className="dome-section">
-        <h2 className="section-title dome-section__title">NOS ÉVÉNEMENTS</h2>
+        <h2 className="section-title noselect">
+          <RevealText text="Nos Événements" />
+        </h2>
         <div className="dome-frame">
           <DomeGallery
             images={eventImages}
@@ -142,17 +117,17 @@ const HomeView: React.FC = () => {
       </section>
 
       <section className="logo-section">
-        <img className="section-side section-side--right" src={logoSideRight} alt="" aria-hidden="true" />
-        <img className="section-side section-side--left" src={logoSideLeft} alt="" aria-hidden="true" />
+        <img className="section-side section-side--right" src={logoSideRight} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
+        <img className="section-side section-side--left" src={logoSideLeft} alt="" aria-hidden="true" {...({ fetchPriority: "low" } as any)} />
         <div className="logo-section__group">
-          <h2 className="section-title">
-            <RevealText text="Logiciels que nous maîtrisons" step={8} />
+          <h2 className="section-title noselect">
+            <RevealText text="Logiciels que nous maîtrisons" />
           </h2>
           <LogoMarquee items={softwareLogos} speed={42} />
         </div>
         <div className="logo-section__group">
-          <h2 className="section-title">
-            <RevealText text="Ils nous font confiance" step={8} />
+          <h2 className="section-title noselect">
+            <RevealText text="Ils nous font confiance" />
           </h2>
           <LogoMarquee items={trustLogos} speed={48} simple />
         </div>
@@ -161,10 +136,10 @@ const HomeView: React.FC = () => {
       <section className="contact">
         <div>
           <p className="contact__title">Vous cherchez une prestation ?</p>
-          <a className="contact__link" href="mailto:contact@bpmclubsono.fr">
-            Contactez nous à l'adresse contact@bpmclubsono.fr
+          <a className="contact__link" href="mailto:contact@bpmclubsono.com">
+            Contactez-nous à l'adresse contact@bpmclubsono.com
           </a>
-          <p className="contact__meta">developper par Nicolas Riedel & gentiment hegerger par minet</p>
+          <p className="contact__meta">Développé par Nicolas et gentiment hebergé par Minet</p>
         </div>
       </section>
     </main>

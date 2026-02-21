@@ -1,6 +1,5 @@
 .logo-loop {
   width: 100%;
-  overflow: hidden;
   position: relative;
 }
 
@@ -44,6 +43,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }

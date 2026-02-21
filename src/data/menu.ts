@@ -10,12 +10,13 @@ export type SocialItem = {
 };
 
 export const menuItems: MenuItem[] = [
-  { label: "Home", link: "/", ariaLabel: "Aller à la page d'accueil" },
+  { label: "Accueil", link: "/", ariaLabel: "Aller à la page d'accueil" },
   { label: "Équipe", link: "/equipe", ariaLabel: "Voir l'équipe" },
-  { label: "Event", link: "/event", ariaLabel: "Voir les événements" }
+  { label: "Évènements", link: "/event", ariaLabel: "Voir les évènements" }
 ];
 
 export const socialItems: SocialItem[] = [
-  { label: "Instagram", link: "https://instagram.com" },
-  { label: "SoundCloud", link: "https://soundcloud.com" }
+  { label: "Instagram", link: "https://www.instagram.com/bpmclubsono" },
+  { label: "SoundCloud", link: "https://soundcloud.com/bpm-club-sono" },
+  { label: "LinkedIn", link: "https://www.linkedin.com/company/bpm-club-sono" }
 ];

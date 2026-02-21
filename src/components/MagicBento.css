@@ -77,12 +77,13 @@
   font-weight: 400;
   font-size: 16px;
   margin: 0 0 0.25em;
+  z-index: 10;
 }
 
 .magic-bento-card__description {
   font-size: 12px;
   line-height: 1.2;
-  opacity: 0.9;
+  z-index: 10;
 }
 
 .magic-bento-card__media {
@@ -102,7 +103,7 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-  opacity: 0.9;
+  z-index: 5;
 }
 
 .magic-bento-card--text-autohide .magic-bento-card__title,
@@ -225,6 +226,7 @@
     right: -12.5%;
     bottom: -30%;
   }
+
   .magic-bento-card[data-card-id="behringer-x32"] .magic-bento-card__media {
     width: 155%;
     right: -12.5%;
@@ -238,12 +240,10 @@
   position: absolute;
   inset: 0;
   padding: 6px;
-  background: radial-gradient(
-    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-    rgba(255, 255, 255, calc(var(--glow-intensity) * 0.5)) 0%,
-    rgba(255, 255, 255, calc(var(--glow-intensity) * 0.2)) 30%,
-    transparent 60%
-  );
+  background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+      rgba(255, 255, 255, calc(var(--glow-intensity) * 0.5)) 0%,
+      rgba(255, 255, 255, calc(var(--glow-intensity) * 0.2)) 30%,
+      transparent 60%);
   border-radius: inherit;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -304,6 +304,7 @@
   position: relative;
   user-select: none;
 }
+
 .magic-bento-card.is-large {
   order: 10;
 }

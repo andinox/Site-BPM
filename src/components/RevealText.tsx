@@ -7,7 +7,7 @@ type RevealTextProps = {
   step?: number;
 };
 
-const RevealText: React.FC<RevealTextProps> = ({ text, delayStart = 0, step = 6 }) => {
+const RevealText: React.FC<RevealTextProps> = ({ text, delayStart = 100, step = 60 }) => {
   const rootRef = useRef<HTMLSpanElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const characters = useMemo(() => Array.from(text), [text]);

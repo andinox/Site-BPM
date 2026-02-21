@@ -1,8 +1,8 @@
-import CDJImg from "@/assets/CDJ.png";
-import KS118Img from "@/assets/ks118.png";
-import X32Img from "@/assets/x32.png";
-import Beam5RImg from "@/assets/beam.png";
-import EcranImg from "@/assets/ecran.png";
+import img_CDJ from "@/assets/equipment/CDJ.png";
+import img_KS118 from "@/assets/equipment/ks118.png";
+import img_X32 from "@/assets/equipment/x32.png";
+import img_Beam5R from "@/assets/equipment/beam.png";
+import img_Ecran from "@/assets/equipment/ecran.png";
 
 export type EquipmentCard = {
   id?: string;
@@ -24,7 +24,7 @@ export const equipmentCards: EquipmentCard[] = [
     label: "Éclairage",
     title: "Beam 5R",
     description: "Poursuites puissantes pour des effets scéniques dynamiques.",
-    image: Beam5RImg,
+    image: img_Beam5R,
     gridColumn: "1 / span 1",
     gridRow: "1"
   },
@@ -33,7 +33,7 @@ export const equipmentCards: EquipmentCard[] = [
     label: "Effets",
     title: "Écrans LED",
     description: "Mur LED haute résolution pour visuels lumineux et immersifs.",
-    image: EcranImg,
+    image: img_Ecran,
     gridColumn: "2 / span 1",
     gridRow: "1"
   },
@@ -42,16 +42,16 @@ export const equipmentCards: EquipmentCard[] = [
     label: "DJ",
     title: "CDJ-2000 Nexus 2",
     description: "Lecteurs DJ Pioneer haut de gamme, standard des clubs.",
-    image: CDJImg,
+    image: img_CDJ,
     gridColumn: "3 / span 2",
     gridRow: "1"
   },
   {
     id: "qsc-ks118",
     label: "Basses",
-    title: "QSC sKS118",
+    title: "QSC KS118",
     description: "Caisson de basses performant, grave profond et percutant.",
-    image: KS118Img,
+    image: img_KS118,
     gridColumn: "1 / span 2",
     gridRow: "1"
   },
@@ -60,7 +60,7 @@ export const equipmentCards: EquipmentCard[] = [
     label: "Mixage",
     title: "Behringer X32",
     description: "Console numérique puissante avec effets intégrés pour le live.",
-    image: X32Img,
+    image: img_X32,
     gridColumn: "3 / span 1",
     gridRow: "2"
   },
@@ -68,7 +68,7 @@ export const equipmentCards: EquipmentCard[] = [
     id: "grandma-command-wing",
     label: "Contrôle",
     title: "GrandMA Command Wing",
-    description: "Contrôleur lumière pro pour une gestion fine des shows.",
+    description: "Contrôleur lumière professionel pour la gestion des shows.",
     gridColumn: "4 / span 1",
     gridRow: "2"
   }

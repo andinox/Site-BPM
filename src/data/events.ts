@@ -3,7 +3,7 @@ export type EventImage = {
   alt: string;
 };
 
-const soireeImageModules = import.meta.glob("../assets/soirée/*.{jpg,jpeg,png,webp}", {
+const soireeImageModules = import.meta.glob("../assets/events/*.{jpg,jpeg,png,webp}", {
   eager: true,
   import: "default"
 }) as Record<string, string>;
