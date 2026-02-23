@@ -1,13 +1,11 @@
-## Site Web BPM — Vue 3 + TypeScript
+## Site Web BPM - React + TypeScript
 
-Ce dépôt contient un site statique BPM construit avec Vue 3, TypeScript et Vite.
-Pages disponibles : `/`, `/equipe`, `/event`.
+Site statique BPM construit avec React, TypeScript et Vite.
 
-## Prérequis
+## Pré-requis
 
-- Node.js `>=24 <25` (un fichier `.nvmrc` est fourni)
-  - Avec nvm : `nvm install` puis `nvm use`
-- Gestionnaire de paquets : npm
+- Node.js `24.x`
+- npm `>=10`
 
 ## Installation
 
@@ -15,48 +13,40 @@ Pages disponibles : `/`, `/equipe`, `/event`.
 npm install
 ```
 
-## Lancer en développement
+## Commandes
 
 ```bash
 npm run dev
-```
-
-Par défaut, Vite sert l'app sur `http://localhost:5173`.
-
-## Build de production
-
-Générer les fichiers statiques dans `dist/` :
-
-```bash
 npm run build
-```
-
-Prévisualiser le build localement :
-
-```bash
 npm run preview
+npm run typecheck
+npm run lint
+npm run test
 ```
 
 ## Docker
 
-Construire l'image (multi-stage) :
+Construire l'image:
 
 ```bash
 docker build -t site-bpm .
 ```
 
-Lancer le conteneur et exposer le site sur `http://localhost:8080` :
+Lancer en local:
 
 ```bash
 docker run --rm -p 8080:80 site-bpm
 ```
 
-Le conteneur construit le bundle avec npm/Vite puis le sert via Nginx avec un fallback `index.html` pour les routes client.
+## Structure
 
-### Docker Compose (prod)
-
-```bash
-docker compose up --build
+```text
+src/
+  app/
+  features/
+    events/
+    home/
+    team/
+  shared/
+  styles/
 ```
-
-Le service unique `site` build l'image et mappe le port `8080` sur `80` du conteneur.

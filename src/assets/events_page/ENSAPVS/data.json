@@ -1,0 +1,17 @@
+{
+    "data" : {
+        "name": "ENSAPVS",
+        "order" : 3,
+        "when" : "Juin 2025",
+        "personnes" : 1900,
+        "where": "Paris 13e",
+        "prix": 5000
+    },
+    "content" : [
+        "2 Salles",
+        "24 barres LEDs et hallogène",
+        "Fumée, Geyser et Fumée Lourde",
+        "23 Spots/Beam/Wash",
+        "2 strobes 3000W"
+    ]
+}

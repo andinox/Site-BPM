@@ -1,0 +1,15 @@
+{
+    "data" : {
+        "name": "NUKETOWN",
+        "order" : 1,
+        "when" : "Déc 2024",
+        "personnes" : 1500,
+        "where": "Evry",
+        "prix": 8000
+    },
+    "content" : [
+        "Lasers & IVL Dice",
+        "Étincelles froides, Geysers & Haze",
+        "Grand MA2 Ultra Light"
+    ]
+}

@@ -1,3 +1,12 @@
+/* ----- Typography ----- */
+@font-face {
+  font-family: "Compressa VF";
+  src: url("../assets/fonts/CompressaVF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: dark;
   --bg: #000000;
@@ -23,9 +32,9 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-  font-family: "JetBrains Mono", monospace;
   background: var(--bg);
   color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -36,10 +45,6 @@ body {
 
 body::-webkit-scrollbar {
   display: none;
-}
-
-body.dg-scroll-lock {
-  overflow: hidden;
 }
 
 .noselect {

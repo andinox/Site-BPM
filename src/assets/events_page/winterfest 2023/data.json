@@ -1,0 +1,15 @@
+{
+    "data" : {
+        "name": "WINTERFEST",
+        "order" : 2,
+        "when" : "Déc 2023",
+        "personnes" : 1700,
+        "where": "Evry",
+        "prix": 15000
+    },
+    "content" : [
+        "3 salles aménagées",
+        "Montage avec des professionnels",
+        "DJs extérieurs (Vladimir Cauchemar)"
+    ]
+}

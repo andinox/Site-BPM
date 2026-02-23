@@ -1,0 +1,58 @@
+.logo-loop {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo-loop__track {
+  display: flex;
+  gap: clamp(24px, 3.4vw, 42px);
+  width: max-content;
+  animation: marquee linear infinite;
+}
+
+.logo-item {
+  display: grid;
+  place-items: center;
+  min-width: clamp(120px, 14vw, 180px);
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: transparent;
+  border: none;
+  gap: 8px;
+  text-align: center;
+}
+
+.logo-item--image img {
+  width: clamp(70px, 10vw, 120px);
+  height: auto;
+  object-fit: contain;
+  filter: none;
+}
+
+.logo-item__primary {
+  font-size: clamp(10px, 1.2vw, 12px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.logo-loop.is-simple .logo-item {
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .logo-loop {
+    width: 92%;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}

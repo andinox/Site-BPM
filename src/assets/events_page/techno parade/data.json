@@ -1,0 +1,14 @@
+{
+    "data" : {
+        "name": "TECHNO PARADE",
+        "order" : 4,
+        "when" : "Sep 2023",
+        "personnes" : 200000,
+        "where": "Paris",
+        "prix": 18000
+    },
+    "content" : [
+        "Aménagement d’une semiremorque",
+        "Montage avec des professionnels"
+    ]
+}
