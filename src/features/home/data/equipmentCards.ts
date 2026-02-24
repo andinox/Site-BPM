@@ -1,6 +1,6 @@
 import type { EquipmentCard } from "@/features/home/types";
 import bladeImage from "@/assets/equipment/blade.png";
-import cdjImage from "@/assets/equipment/CDJ.png";
+import cdjImage from "@/assets/equipment/XZ.png";
 import ledScreenImage from "@/assets/equipment/ecran.png";
 import pixyImage from "@/assets/equipment/pixy.png";
 import prolyteImage from "@/assets/equipment/prolyte.png";
@@ -42,9 +42,9 @@ export const equipmentCards: EquipmentCard[] = [
     gridRow: "2"
   },
   {
-    id: "cdj-2000-nexus-2",
+    id: "xz",
     label: "DJ",
-    title: "CDJ-2000 Nexus 2",
+    title: "XDJ-XZ Pioneer Dj",
     image: cdjImage,
     gridColumn: "3 / span 2",
     gridRow: "2"
@@ -68,7 +68,7 @@ export const equipmentCards: EquipmentCard[] = [
   {
     id: "prolyte-meters",
     label: "Structure",
-    title: "Beaucoup de Prolyte",
+    title: "Beaucoup de Prolytes",
     image: prolyteImage,
     gridColumn: "3 / span 2",
     gridRow: "3"

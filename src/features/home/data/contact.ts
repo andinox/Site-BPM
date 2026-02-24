@@ -3,7 +3,7 @@ import type { ContactSectionContent } from "@/features/home/types";
 const primaryRecipientEmail = "jean.vidal@telecom-sudparis.eu";
 const ccRecipientEmails = [
   "hector.nussbaumer@telecom-sudparis.eu",
-  "cmathieu.bonnet@telecom-sudparis.eu"
+  "mathieu.bonnet@telecom-sudparis.eu"
 ];
 
 const buildMailtoHref = (primaryRecipient: string, ccRecipients: string[]) => {
