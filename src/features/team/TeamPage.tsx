@@ -19,8 +19,8 @@ const getTeamNodePositionStyle = (member: TeamMemberNode) => {
 const TeamPage = () => {
   const {
     viewportRef,
+    canvasRef,
     isDragging,
-    canvasTransformStyle,
     zoomIn,
     zoomOut,
     resetView,
@@ -69,7 +69,7 @@ const TeamPage = () => {
           onPointerLeave={handlePointerUp}
           onWheel={handleWheel}
         >
-          <div className="team-canvas" style={canvasTransformStyle}>
+          <div ref={canvasRef} className="team-canvas">
             <div className="team-tree">
               {teamMembers.map((member) => (
                 <div key={member.id} className="team-node" style={getTeamNodePositionStyle(member)}>

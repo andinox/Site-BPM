@@ -1,10 +1,8 @@
 import {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
-  type CSSProperties,
   type PointerEvent as ReactPointerEvent,
   type WheelEvent as ReactWheelEvent
 } from "react";
@@ -31,21 +29,57 @@ const DEFAULT_TRANSFORM: CanvasTransform = {
   scale: 1
 };
 
-const createCanvasTransformStyle = (transform: CanvasTransform): CSSProperties => {
-  return {
-    transform: `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`
-  };
+const toCanvasTransformValue = (transform: CanvasTransform) => {
+  return `translate3d(${transform.x}px, ${transform.y}px, 0) scale(${transform.scale})`;
 };
 
 export const useTeamCanvas = () => {
   const viewportRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLDivElement | null>(null);
   const dragStateRef = useRef<PointerDragState | null>(null);
   const transformRef = useRef<CanvasTransform>(DEFAULT_TRANSFORM);
+  const pendingTransformRef = useRef<CanvasTransform | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
 
-  const [transform, setTransform] = useState<CanvasTransform>(DEFAULT_TRANSFORM);
   const [isDragging, setIsDragging] = useState(false);
 
-  transformRef.current = transform;
+  const scheduleTransform = useCallback((nextTransform: CanvasTransform) => {
+    transformRef.current = nextTransform;
+    pendingTransformRef.current = nextTransform;
+
+    if (animationFrameRef.current !== null) {
+      return;
+    }
+
+    animationFrameRef.current = window.requestAnimationFrame(() => {
+      animationFrameRef.current = null;
+
+      if (!canvasRef.current || !pendingTransformRef.current) {
+        return;
+      }
+
+      canvasRef.current.style.transform = toCanvasTransformValue(pendingTransformRef.current);
+      pendingTransformRef.current = null;
+    });
+  }, []);
+
+  const updateTransform = useCallback(
+    (updater: (previousTransform: CanvasTransform) => CanvasTransform) => {
+      const previousTransform = transformRef.current;
+      const nextTransform = updater(previousTransform);
+
+      if (
+        previousTransform.x === nextTransform.x &&
+        previousTransform.y === nextTransform.y &&
+        previousTransform.scale === nextTransform.scale
+      ) {
+        return;
+      }
+
+      scheduleTransform(nextTransform);
+    },
+    [scheduleTransform]
+  );
 
   // ----- Centering helpers -----
   const centerView = useCallback((scaleOverride?: number) => {
@@ -56,12 +90,12 @@ export const useTeamCanvas = () => {
     const scale = scaleOverride ?? transformRef.current.scale;
     const viewportRect = viewportRef.current.getBoundingClientRect();
 
-    setTransform({
+    scheduleTransform({
       scale,
       x: (viewportRect.width - TEAM_CANVAS_WIDTH * scale) / 2,
       y: (viewportRect.height - TEAM_CANVAS_HEIGHT * scale) / 2
     });
-  }, []);
+  }, [scheduleTransform]);
 
   const zoomBy = useCallback((factor: number) => {
     if (!viewportRef.current) {
@@ -72,7 +106,7 @@ export const useTeamCanvas = () => {
     const pivotX = viewportRect.width / 2;
     const pivotY = viewportRect.height / 2;
 
-    setTransform((previousTransform) => {
+    updateTransform((previousTransform) => {
       const nextScale = clamp(previousTransform.scale * factor, TEAM_MIN_SCALE, TEAM_MAX_SCALE);
       if (nextScale === previousTransform.scale) {
         return previousTransform;
@@ -87,7 +121,7 @@ export const useTeamCanvas = () => {
         y: pivotY - contentY * nextScale
       };
     });
-  }, []);
+  }, [updateTransform]);
 
   // ----- Drag handlers -----
   const handlePointerDown = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
@@ -114,12 +148,12 @@ export const useTeamCanvas = () => {
       return;
     }
 
-    setTransform((previousTransform) => ({
+    updateTransform((previousTransform) => ({
       ...previousTransform,
       x: dragState.originX + (event.clientX - dragState.startClientX),
       y: dragState.originY + (event.clientY - dragState.startClientY)
     }));
-  }, []);
+  }, [updateTransform]);
 
   const stopDragging = useCallback((event: ReactPointerEvent<HTMLDivElement>) => {
     const dragState = dragStateRef.current;
@@ -143,7 +177,7 @@ export const useTeamCanvas = () => {
     const pointerX = event.clientX - viewportRect.left;
     const pointerY = event.clientY - viewportRect.top;
 
-    setTransform((previousTransform) => {
+    updateTransform((previousTransform) => {
       const zoomDelta = -event.deltaY * 0.0018;
       const nextScale = clamp(previousTransform.scale + zoomDelta, TEAM_MIN_SCALE, TEAM_MAX_SCALE);
       if (nextScale === previousTransform.scale) {
@@ -159,7 +193,7 @@ export const useTeamCanvas = () => {
         y: pointerY - contentY * nextScale
       };
     });
-  }, []);
+  }, [updateTransform]);
 
   const resetView = useCallback(() => {
     centerView(1);
@@ -174,6 +208,14 @@ export const useTeamCanvas = () => {
   }, [zoomBy]);
 
   useEffect(() => {
+    if (!canvasRef.current) {
+      return;
+    }
+
+    canvasRef.current.style.transform = toCanvasTransformValue(transformRef.current);
+  }, []);
+
+  useEffect(() => {
     centerView(1);
 
     const handleResize = () => {
@@ -184,14 +226,19 @@ export const useTeamCanvas = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [centerView]);
 
-  const canvasTransformStyle = useMemo(() => {
-    return createCanvasTransformStyle(transform);
-  }, [transform]);
+  useEffect(() => {
+    return () => {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
+  }, []);
 
   return {
     viewportRef,
+    canvasRef,
     isDragging,
-    canvasTransformStyle,
     zoomIn,
     zoomOut,
     resetView,

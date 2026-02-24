@@ -2,7 +2,10 @@
   position: relative;
   height: 100vh;
   width: 100%;
-  background: #050505;
+  background:
+    radial-gradient(circle at 12% 6%, rgba(36, 112, 255, 0.2), transparent 36%),
+    radial-gradient(circle at 88% 0%, rgba(255, 136, 42, 0.18), transparent 34%),
+    linear-gradient(180deg, #030303 0%, #080808 100%);
   color: #ffffff;
   overflow: hidden;
 }
@@ -118,10 +121,17 @@
   cursor: grabbing;
 }
 
+.team-viewport[data-dragging="true"] .team-card {
+  box-shadow: none;
+}
+
 .team-canvas {
   position: absolute;
   inset: 0;
   transform-origin: 0 0;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .team-tree {
@@ -134,6 +144,7 @@
   position: absolute;
   width: 180px;
   height: 180px;
+  contain: layout paint;
 }
 
 .team-card {
@@ -170,4 +181,86 @@
 .team-role {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+  .team-frame {
+    background:
+      radial-gradient(circle at 16% 0%, rgba(36, 112, 255, 0.16), transparent 36%),
+      radial-gradient(circle at 82% 0%, rgba(255, 136, 42, 0.14), transparent 34%),
+      #040404;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .team-watermark {
+    display: none;
+  }
+
+  .team-bg-number {
+    display: none;
+  }
+
+  .team-label {
+    top: 14px;
+    left: 14px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .team-toolbar {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+  }
+
+  .team-button {
+    padding: 4px 10px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  .team-hint {
+    display: none;
+  }
+
+  .team-viewport {
+    background-image: none;
+    background-color: #070707;
+  }
+
+  .team-card {
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.82);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: none;
+  }
+
+  .team-avatar {
+    width: 64px;
+    height: 64px;
+    border: 0;
+  }
+
+  .team-name {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  .team-role {
+    font-size: 11px;
+  }
+
+  .team-viewport[data-dragging="true"] .team-card {
+    justify-content: center;
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .team-viewport[data-dragging="true"] .team-avatar {
+    opacity: 0.82;
+  }
+
+  .team-viewport[data-dragging="true"] .team-role {
+    opacity: 0.5;
+  }
 }

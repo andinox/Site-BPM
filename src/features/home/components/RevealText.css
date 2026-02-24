@@ -1,6 +1,11 @@
 .reveal {
-  display: inline-block;
+  display: inline;
   white-space: pre-line;
+}
+
+.word {
+  display: inline-flex;
+  white-space: nowrap;
 }
 
 .char {
@@ -20,6 +25,8 @@
 }
 
 .char.space {
+  display: inline;
+  white-space: pre;
   opacity: 1;
   transform: none;
   transition: none;
